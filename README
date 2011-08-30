@@ -1,0 +1,47 @@
+recat - Replay logfiles in simulated real-time
+=================================================
+
+What does that mean? 
+--------------------
+
+Quite simply it means that if you give `recat` a logfile and a list of
+fields that represent a time, it'll attempt to replay the log entries as
+they happened.
+
+Won't that take a lot of time?
+------------------------------
+
+Of course! This is why I've added the `-n` option, which allows you to 
+specify a speed up factor. So, if you say -n 1000, that means all the
+things that happened within 1000 seconds of each other will be shown within
+1 second of each other instead.
+
+Does this support nyanbar?
+--------------------------
+
+Not yet.
+
+
+Options
+-------
+
+Part of the problem is that log files don't always have consistent locations
+for date/time. As a result, you'll likely have to tell `recat` where to look,
+and in what format the date/time is in.
+
+  -f 1,2,3,4   - Given a separator, which fields (indexed from 1) should be
+                 considered?
+  -n NUM       - This is the speedup factor that I discussed before
+  -s SEPARATOR - A list of delimeters (not comma separated, just list them
+                  ex: " ,-" would be a space or a comma or a dash)
+  -t FORMAT    - This is the difficult one. The format that the time is in.
+                 The default is '%Y-%m-%d %H:%M:%s' This uses the format 
+                 specifiers as per `time.strftime()` in Python.
+                 (http://docs.python.org/library/time.html#time.strftime)
+
+
+Putting it all together, you've got:
+
+   $ recat -f 1,2 -n 10 -s ' ,' file.log
+
+Blammo!                 
