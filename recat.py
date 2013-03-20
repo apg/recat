@@ -49,12 +49,13 @@ def _parse_time(line, fields, separators, format):
             bits = [x for i, x in \
                         enumerate(re.split(separators, line)) 
                     if i % 2 == 0]
-            fs = [bits[i-1] for i in fields]
+            fs = [bits[i-1].strip() for i in fields]
+
             return time.mktime(datetime.datetime\
                                    .strptime(' '.join(fs), format)\
                                    .timetuple())
     except Exception, e:
-        sys.stderr.write("\ncouldn't parse fields into time given format: '%s'" % line)
+        sys.stderr.write("\ncouldn't parse fields into time given format: '%s'\n" % ' '.join(fs))
         return -1
 
 
