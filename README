@@ -30,7 +30,7 @@ for date/time. As a result, you'll likely have to tell `recat` where to look,
 and in what format the date/time is in.
 
   -f 1,2,3,4   - Given a separator, which fields (indexed from 1) should be
-                 considered?
+                 considered as the date/time?
   -n NUM       - This is the speedup factor that I discussed before
   -s SEPARATOR - A list of delimeters (not comma separated, just list them
                   ex: " ,-" would be a space or a comma or a dash)
@@ -44,4 +44,11 @@ Putting it all together, you've got:
 
    $ recat -f 1,2 -n 10 -s ' ,' file.log
 
-Blammo!                 
+Blammo!
+
+
+Licensing
+---------
+
+recat is licensed under the GPLv3. Read the LICENSE file for more info
+
